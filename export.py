@@ -7,7 +7,7 @@ database = 'localhost/xe'
 connection = cx_Oracle.connect(username, password, database)
 cursor = connection.cursor()
 
-table = ['film', 'country', 'film_country']
+table = ['movie', 'mov_country']
 for i in table:
     with open(i + '.csv', 'w', newline='') as csvf:
 

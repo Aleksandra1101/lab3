@@ -1,109 +1,22 @@
-CREATE VIEW aboutfilm  AS
-
-
+CREATE VIEW aboutf  AS
 
     SELECT
 
+        movie.filmtv_id,
 
+        mov_country.movie_id,
 
-        film.filmtv_id,
-
-
-
-        film_country.filmtv_id_fk,
-
-
-
-        film_country.country_name_fk,
-
+        mov_country.moviecountry_name,
         
-
-        film.country,
-
+        movie.country,
         
-
-        film.year
-
+        movie.year
 
 
     FROM
 
+        mov_country
 
-
-        film_country
-
-
-
-        JOIN film ON film_country.filmtv_id_fk = film.filmtv_id
-
+        JOIN movie ON mov_country.movie_id = movie.filmtv_id
         
-
-        JOIN film ON film_country.country_name_fk = film.country;
-
-        
-
-SELECT 
-
-        country,
-
-        
-
-        count(filmtv_id) as film_count
-
-        
-
-      FROM 
-
-      
-
-        aboutfilm
-
-        
-
-        GROUP BY country
-
-        
-
-SELECT 
-
-    country, 
-
-
-
-    ROUND(COUNT(filmtv_id)*100/t.count, 2) AS persent
-
-
-
-    FROM film_country_film,
-
-
-
-    (SELECT COUNT(filmtv_id) AS count
-
-
-
-    FROM film_country_film)t   
-
-
-
-GROUP BY country,
-
-
-
-t.count
-
-
-
-SELECT year, count(filmtv_id) as quantity_films
-
-
-
-FROM aboutfilm
-
-
-
-group by year
-
-
-
-order by year;
+        JOIN movie ON mov_country.moviecountry_name = movie.country;
